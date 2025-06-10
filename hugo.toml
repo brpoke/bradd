@@ -1,7 +1,6 @@
 baseURL = "http://38.242.204.176:1313/"
 languageCode = "pt-BR"
 title = "pokernabrasil"
-theme = ""
 enableRobotsTXT = true
 defaultContentLanguage = "pt-BR"
 [languages]
