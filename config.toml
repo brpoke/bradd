@@ -18,3 +18,5 @@ defaultContentLanguage = "pt-BR"
     [markup.goldmark.renderer]
       unsafe = true
 frontmatterFormat = "yaml"
+[module]
+  disable = true
