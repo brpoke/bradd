@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta name="robots" content="index, follow">
+  
+  {{ if .IsHome }}
+    {{ partial "indexjson.html" . }}
+  {{ end }}
+
+  {{ with .Params.customld }}
+  <script type="application/ld+json">
+  {{ . | jsonify | safeJS }}
+  </script>
+  {{ end }}
+
+  {{ block "styles" . }}
+  <link rel="stylesheet" href="/css/main.css">
+  {{ end }}
+</head>
+<body>
+  <header>
+    <a class="site-logo" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+  </header>
+  
+  <!-- Убираем <main> отсюда, пусть каждый шаблон сам решает -->
+  <div class="container">
+    {{ block "main" . }}{{ end }}
+  </div>
+  
+  <footer>
+    <p>© {{ now.Year }} {{ .Site.Title }}</p>
+  </footer>
+</body>
+</html>

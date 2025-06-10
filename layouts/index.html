@@ -1,0 +1,33 @@
+{{ define "styles" }}
+  <link rel="stylesheet" href="/css/main.css">
+{{ end }}
+
+{{ define "main" }}
+<main role="main">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  <section aria-label="Список страниц сайта">
+    {{ range .Pages }}
+      <article class="article-list-item">
+        <div style="flex:1">
+          <div class="article-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+          </div>
+          <h2 class="article-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          {{ with .Params.description }}
+            <div class="article-description">{{ . }}</div>
+          {{ end }}
+          <a class="read-more-link" href="{{ .RelPermalink }}">Ler mais</a>
+        </div>
+      </article>
+    {{ end }}
+  </section>
+  <section>
+   gggg
+  </section>
+dhdhdh
+</main>
+{{ end }}

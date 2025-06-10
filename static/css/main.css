@@ -1,0 +1,1038 @@
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary-color: #64748b;
+  --accent-color: #06b6d4;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Анимированный фон с частицами */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Общие стили для main */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+/* Хедер */
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.site-logo {
+  display: inline-block;
+  font-family: inherit;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.site-logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-logo:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Футер */
+footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========== СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ ========== */
+
+/* Заголовок главной страницы */
+main > h1 {
+  color: var(--text-primary);
+  margin: 0 0 3rem 0;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+main > h1::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: 2px;
+}
+
+section[aria-label="Список страниц сайта"] {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  margin: 3rem 0;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+section[aria-label="Список страниц сайта"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+}
+
+.article-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.article-list-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border-hover);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+
+.article-list-item:hover::before {
+  transform: scaleY(1);
+}
+
+.article-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.article-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.article-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.article-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.article-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.article-title a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.article-title a:hover {
+  color: var(--primary-color);
+}
+
+.article-title a:hover::after {
+  width: 100%;
+}
+
+.article-description {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.read-more-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.read-more-link:hover::before {
+  left: 100%;
+}
+
+.read-more-link:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.read-more-link::after {
+  content: '→';
+  font-size: 1.1rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.read-more-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* ========== СТИЛИ ДЛЯ СТРАНИЦ СТАТЕЙ ========== */
+
+/* Убираем лишние фоны для устранения тройного выделения */
+article {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Заголовок статьи */
+article h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-align: center;
+  margin: 0 0 1em 0;
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Мета информация статьи */
+article > p {
+  text-align: center;
+  margin: 0 0 2em 0;
+  color: var(--text-muted);
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+article > p time {
+  background: var(--bg-tertiary);
+  padding: 0.3em 0.8em;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Описание поста */
+.post-description {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+  color: var(--text-primary);
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 1.5em 2em;
+  margin: 2em 0;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+  line-height: 1.6;
+}
+
+/* НОВЫЕ СТИЛИ ДЛЯ СЕКЦИЙ СТАТЕЙ */
+
+/* Все секции внутри статей получают белый фон и структуру */
+article section {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2.5em 2em;
+  margin: 2em 0;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Декоративная полоска сверху для каждой секции */
+article section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Эффект при наведении на секции */
+article section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-hover);
+}
+
+/* Заголовки внутри секций */
+article section h2,
+article section h3,
+article section h4,
+article section h5,
+article section h6 {
+  margin-top: 0;
+  margin-bottom: 1.2em;
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* Специальные стили для первого заголовка в секции */
+article section > h2:first-child,
+article section > h3:first-child,
+article section > h4:first-child {
+  color: var(--primary-color);
+  font-weight: 700;
+  padding-bottom: 0.8em;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 1.5em;
+}
+
+/* Основной контент статьи - обновленные стили */
+.post-content {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 3em 2.5em;
+  margin: 2.5em 0;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.post-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.post-content:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+/* Футер статьи */
+article footer {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 1.5em 2em;
+  margin: 2em 0 0 0;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+article footer p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+article footer span {
+  background: var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.3em 0.7em;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin: 0 0.2em;
+}
+
+/* ========== ОБЩИЕ СТИЛИ КОНТЕНТА ========== */
+
+/* Заголовки внутри контента */
+h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5em;
+  margin-top: 3em;
+}
+
+h3 {
+  font-size: 1.4em;
+  color: var(--text-secondary);
+}
+
+/* Типографика контента */
+p {
+  margin-bottom: 1.4em;
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Первый абзац выделяем */
+.post-content > p:first-child {
+  font-size: 1.15em;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Списки */
+ul, ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+li {
+  margin-bottom: 0.7em;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+li::marker {
+  color: var(--primary-color);
+}
+
+/* Таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  font-size: 0.95em;
+}
+
+th, td {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1em 1.2em;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-tertiary);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr:hover {
+  background: var(--bg-tertiary);
+}
+
+/* Цитаты */
+blockquote {
+  border-left: 4px solid var(--primary-color);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  color: #0c4a6e;
+  padding: 1.5em 2em;
+  margin: 2em 0;
+  font-style: italic;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  font-size: 4em;
+  color: var(--primary-color);
+  position: absolute;
+  top: -0.2em;
+  left: 0.3em;
+  opacity: 0.3;
+  line-height: 1;
+}
+
+/* Код */
+pre, code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+}
+
+code {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+}
+
+pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1.5em;
+  margin: 2em 0;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  box-shadow: var(--shadow-md);
+  border: 1px solid #334155;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Ссылки */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.2em;
+  margin: -0.1em -0.2em;
+}
+
+a:hover, a:focus {
+  color: var(--primary-dark);
+  background: rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* Кнопки */
+button, .button {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.8em 1.8em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover, .button:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Разделитель */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 3em 0;
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-list-item {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.article-list-item:nth-child(1) { animation-delay: 0.1s; }
+.article-list-item:nth-child(2) { animation-delay: 0.2s; }
+.article-list-item:nth-child(3) { animation-delay: 0.3s; }
+.article-list-item:nth-child(4) { animation-delay: 0.4s; }
+.article-list-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* Анимация появления для секций статей */
+article section {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+article section:nth-child(1) { animation-delay: 0.1s; }
+article section:nth-child(2) { animation-delay: 0.15s; }
+article section:nth-child(3) { animation-delay: 0.2s; }
+article section:nth-child(4) { animation-delay: 0.25s; }
+article section:nth-child(5) { animation-delay: 0.3s; }
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  main {
+    padding: 1rem;
+  }
+
+  header {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  section[aria-label="Список страниц сайта"] {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .article-list-item {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .article-title {
+    font-size: 1.25rem;
+  }
+
+  /* Стили для статей на мобильных */
+  article h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin-bottom: 0.8em;
+  }
+
+  .post-description {
+    padding: 1.2em 1.5em;
+    font-size: 1.05em;
+  }
+
+  .post-content {
+    padding: 2em 1.5em;
+    margin: 1.5em 0;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Адаптивные стили для секций статей */
+  article section {
+    padding: 1.8em 1.5em;
+    margin: 1.5em 0;
+  }
+
+  article footer {
+    padding: 1.2em 1.5em;
+  }
+
+  table {
+    font-size: 0.85em;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+
+  blockquote {
+    padding: 1.2em 1.5em;
+    margin: 1.5em 0;
+  }
+
+  pre {
+    padding: 1.2em;
+    font-size: 0.85em;
+  }
+  
+  main > h1 {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0.75rem;
+  }
+  
+  section[aria-label="Список страниц сайта"] {
+    padding: 1rem;
+  }
+  
+  .article-list-item {
+    padding: 1rem;
+  }
+
+  .post-content {
+    padding: 1.5em 1em;
+  }
+
+  .post-description {
+    padding: 1em 1.2em;
+  }
+
+  article footer {
+    padding: 1em 1.2em;
+  }
+
+  /* Мобильные стили для секций */
+  article section {
+    padding: 1.5em 1em;
+    margin: 1em 0;
+  }
+}
+
+/* Дополнительные улучшения для читаемости */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1e293b;
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --border-hover: #475569;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+  
+  body::before {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  }
+}
+/* ========== АФФИЛЕЙТ КАРТОЧКА ========== */
+
+/* Аффилейт карточка на всю ширину */
+.affiliate-card {
+ width: 100%;
+ max-width: none;
+ margin: 2rem 0;
+ padding: 3rem 2rem;
+ background: var(--bg-primary);
+ border-radius: var(--radius-xl);
+ box-shadow: var(--shadow-lg);
+ border: 1px solid var(--border-color);
+ position: relative;
+ overflow: hidden;
+ text-align: center;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Декоративная полоса сверху */
+.affiliate-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ height: 4px;
+ background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+ border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.affiliate-card:hover {
+ transform: translateY(-2px);
+ box-shadow: var(--shadow-xl);
+ border-color: var(--border-hover);
+ background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+
+/* Метка рекламы */
+.affiliate-label {
+ display: inline-block;
+ background: var(--bg-tertiary);
+ color: var(--text-muted);
+ padding: 0.5rem 1rem;
+ border-radius: 20px;
+ font-size: 0.8rem;
+ font-weight: 600;
+ text-transform: uppercase;
+ letter-spacing: 0.05em;
+ margin-bottom: 1.5rem;
+ border: 1px solid var(--border-color);
+ position: relative;
+}
+
+.affiliate-label::before {
+ content: '💼';
+ margin-right: 0.5rem;
+}
+
+/* Заголовок */
+.affiliate-card h3 {
+ color: var(--text-primary);
+ font-size: clamp(1.5rem, 3vw, 2.2rem);
+ font-weight: 700;
+ line-height: 1.3;
+ margin: 0 0 1.5rem 0;
+ letter-spacing: -0.02em;
+ position: relative;
+}
+
+/* Описание (опционально) */
+.affiliate-description {
+ color: var(--text-secondary);
+ font-size: 1.1rem;
+ margin: 0 0 2rem 0;
+ max-width: 600px;
+ margin-left: auto;
+ margin-right: auto;
+ line-height: 1.6;
+}
+
+/* Кнопка */
+.affiliate-card .cta-button {
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.75rem;
+ padding: 1rem 2.5rem;
+ font-size: 1.1rem;
+ font-weight: 600;
+ color: white;
+ background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+ border: none;
+ border-radius: var(--radius-md);
+ text-decoration: none;
+ cursor: pointer;
+ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ position: relative;
+ overflow: hidden;
+ box-shadow: var(--shadow-md);
+ min-width: 200px;
+}
+
+.affiliate-card .cta-button::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: -100%;
+ width: 100%;
+ height: 100%;
+ background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+ transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.affiliate-card .cta-button:hover::before {
+ left: 100%;
+}
+
+.affiliate-card .cta-button:hover {
+ background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+ transform: translateY(-2px);
+ box-shadow: var(--shadow-xl);
+}
+
+.affiliate-card .cta-button::after {
+ content: '→';
+ font-size: 1.2rem;
+ transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.affiliate-card .cta-button:hover::after {
+ transform: translateX(4px);
+}
+
+/* Дополнительная информация */
+.affiliate-info {
+ margin-top: 1.5rem;
+ font-size: 0.9rem;
+ color: var(--text-muted);
+ font-weight: 500;
+}
+
+/* Анимация появления для аффилейт карточки */
+.affiliate-card {
+ animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Адаптивность для аффилейт карточки */
+@media (max-width: 768px) {
+ .affiliate-card {
+   padding: 2rem 1.5rem;
+   margin: 1.5rem 0;
+   border-radius: var(--radius-lg);
+ }
+
+ .affiliate-card h3 {
+   font-size: clamp(1.3rem, 4vw, 1.8rem);
+   margin-bottom: 1rem;
+ }
+
+ .affiliate-description {
+   font-size: 1rem;
+   margin-bottom: 1.5rem;
+ }
+
+ .affiliate-card .cta-button {
+   padding: 0.9rem 2rem;
+   font-size: 1rem;
+   min-width: 180px;
+ }
+}
+
+@media (max-width: 480px) {
+ .affiliate-card {
+   padding: 1.5rem 1rem;
+   margin: 1rem 0;
+ }
+
+ .affiliate-card .cta-button {
+   width: 100%;
+   max-width: 280px;
+   padding: 0.8rem 1.5rem;
+ }
+
+ .affiliate-label {
+   font-size: 0.75rem;
+   padding: 0.4rem 0.8rem;
+ }
+}

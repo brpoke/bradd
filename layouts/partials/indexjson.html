@@ -1,0 +1,28 @@
+{{ if .Pages }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {{ range $index, $el := .Pages }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $index 1 }},
+      "item": {
+        "@type": "BlogPosting",
+        "url": "{{ $el.Permalink }}",
+        "headline": "{{ $el.Title }}",
+        {{ with $el.Params.description }}
+        "description": "{{ . }}",
+        {{ end }}
+        {{ with $el.Params.image }}
+        "image": "{{ . | absURL }}"
+        {{ end }}
+      }
+    }{{ if ne (add $index 1) (len $.Pages) }},{{ end }}
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+

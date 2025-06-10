@@ -1,0 +1,16 @@
+{{ define "main" }}
+<main role="main">
+  <article>
+    <h1>{{ .Title }}</h1>
+    <p><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time></p>
+
+    {{ with .Params.description }}
+      <p class="post-description">{{ . }}</p>
+    {{ end }}
+
+  <section class="post-content">
+    {{ .Content }}
+  </section>
+ </article>
+</main>
+{{ end }}
