@@ -1,4 +1,4 @@
-baseURL = "http://38.242.204.176:1313/"
+baseURL = "https://pokernabrasil.com"
 languageCode = "pt-BR"
 title = "pokernabrasil"
 enableRobotsTXT = true
